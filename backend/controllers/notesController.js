@@ -20,8 +20,9 @@ const createNewNote = asyncHandler(async (req, res) => {
     if (!user || !title || !text) {
         return res.status(400).json({ message: 'All fields are required' })
     }
-
+    
     const duplicate = await Note.findOne({ title }).lean().exec()
+    
 
     if (duplicate) {
         return res.status(409).json({ message: 'Duplicate note title' })

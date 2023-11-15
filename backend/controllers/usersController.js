@@ -11,7 +11,7 @@ const getAllUsers = asyncHandler (async (req , res) => {
         res.json(users)
 })
 
-const createNewUser = asyncHandler (async (req , res) => {
+const createNewUser = asyncHandler (async (req , res) => {    
     const {username, password, roles} = req.body
     if (!username || !password || !Array.isArray(roles) || !roles.length) {
         return res.status(400).json({message: 'All fields are required'})
@@ -27,7 +27,7 @@ const createNewUser = asyncHandler (async (req , res) => {
 
     const userObject = {username, "password": hashedPwd, roles }
 
-    const user = await User.create(userObject)
+    const user = await User.create(userObject)    
 
     if(user) {
         res.status(201).json({message: `New user ${username} created`})
