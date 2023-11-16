@@ -6,6 +6,10 @@ import DashLayoute from './components/DashLayoute';
 import Welcome from './features/auth/Welcome';
 import NotesList from './features/notes/NotesList';
 import UsersList from './features/users/UsersList';
+import EditUser from './features/users/EditUser';
+import NewUserForm from './features/users/NewUserForm';
+import EditNote from './features/notes/EditNote';
+import NewNote from './features/notes/NewNote';
 
 
 function App() {
@@ -16,17 +20,21 @@ function App() {
         <Route path="login" element={<Login />} />
         <Route path="dash" element={<DashLayoute />}>
 
-          <Route index element={<Welcome />} />
-
-          <Route path="notes">
-            <Route index element={<NotesList />} />
-          </Route>
+          <Route index element={<Welcome />} />         
 
           <Route path="users">
             <Route index element={<UsersList />} />
+            <Route path=":id" element={<EditUser />}></Route>
+            <Route path="new" element={<NewUserForm />}></Route>
           </Route>
 
-        </Route>{/* End Dash */}
+          <Route path="notes">
+            <Route index element={<NotesList />} />
+            <Route path=":id" element={<EditNote />}></Route>
+            <Route path="new" element={<NewNote />}></Route>
+          </Route>
+
+        </Route>
 
       
       </Route>
