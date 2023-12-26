@@ -6,10 +6,10 @@
   box-sizing: border-box;
 }
 
-/* || VARIABLES */
+
 
 :root {
-  /* COLORS */
+
   --BGCOLOR: #0F172A;
   --BORDER-COLOR: #FFF;
   --COLOR: #FFF;
@@ -22,15 +22,21 @@
   --STATUS-OPEN: firebrick;
   --TABLE-BGCOLOR: #FFF;
   --TABLE-COLOR: #000;
+  --INPUT-INVALID: #F00;
 }
 
-/* || UTILITY CLASSES */
+
 .errmsg {
   display: inline-block;
   background-color: var(--TABLE-BGCOLOR);
   color: var(--ERROR);
   padding: 0.25em;
   margin-bottom: 0.5em;
+}
+
+.errmsg a:any-link {
+  color: var(--ERROR);
+  text-decoration: underline;
 }
 
 .nowrap {
@@ -57,7 +63,6 @@
   visibility: hidden;
 }
 
-/* || GENERAL STYLES */
 
 body {
   font-family: 'Nunito', sans-serif;
@@ -78,7 +83,6 @@ select {
 }
 
 #root {
-  /* React root div */
   min-height: 100vh;
   display: flex;
   flex-flow: column nowrap;
@@ -88,8 +92,7 @@ a {
   text-decoration: none;
 }
 
-a,
-a:visited {
+a:any-link {
   color: var(--LINK-COLOR);
 }
 
@@ -98,7 +101,6 @@ a:focus-visible {
   color: var(--LINK-HOVER);
 }
 
-/* || PAGES */
 
 .public,
 .welcome {
@@ -128,8 +130,6 @@ a:focus-visible {
   content: "➜ "
 }
 
-/* || DASH HEADER, CONTAINER & FOOTER */
-
 .dash-header {
   position: sticky;
   top: 0;
@@ -144,6 +144,10 @@ a:focus-visible {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+}
+
+.dash-header__container--small {
+  max-width: 800px;
 }
 
 .dash-header__nav {
@@ -177,9 +181,6 @@ a:focus-visible {
   width: auto;
   height: auto;
 }
-
-
-/* || TABLES - GENERAL */
 
 thead,
 tbody,
@@ -225,8 +226,6 @@ tr {
   background-color: var(--INACTIVE);
 }
 
-/* ||  NOTE */
-
 .note__created,
 .note__updated,
 .note__username {
@@ -244,9 +243,6 @@ tr {
 .note__status--completed {
   color: var(--STATUS-COMPLETE);
 }
-
-
-/* || FORM - GENERAL */
 
 .form {
   display: flex;
@@ -286,10 +282,9 @@ tr {
 }
 
 .form__input--incomplete {
-  border: 1px solid red;
-  outline: 1px solid red;
+  border: 1px solid var(--INPUT-INVALID);
+  outline: 1px solid var(--INPUT-INVALID);
 }
-
 
 .form__checkbox {
   width: 24px;
@@ -335,6 +330,7 @@ tr {
     font-size: 1.5rem;
   }
 }
+
 
 @media screen and (min-width: 768px) {
 
