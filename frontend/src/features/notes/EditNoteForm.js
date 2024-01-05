@@ -81,7 +81,7 @@ const EditNoteForm = ({ note, users }) => {
             <button
                 className="icon-button"
                 title="Delete"
-                onClick={{ onDeleteNoteClicked }}
+                onClick={ onDeleteNoteClicked }
             >
                 <FontAwesomeIcon icon={faTrashCan} />
             </button>

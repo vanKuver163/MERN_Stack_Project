@@ -1,16 +1,17 @@
 require('dotenv').config()
-const express = require('express');
-const app = express();
+const express = require('express')
+const app = express()
 const path = require('path')
-const {logger} = require('./middleware/logger')
+const { logger, logEvents } = require('./middleware/logger')
 const errorHandler = require('./middleware/errorHandler')
 const cookieParser = require('cookie-parser')
 const cors = require('cors')
 const corsOptions = require('./config/corsOptions')
 const connectDB = require('./config/dbConn')
 const mongoose = require('mongoose')
-const {logEvents} = require('./middleware/logger')
 const PORT = process.env.PORT || 3500
+
+console.log(process.env.NODE_ENV)
 
 connectDB()
 
@@ -31,11 +32,11 @@ app.use('/notes', require('./routes/noteRoutes'))
 
 app.all('*', (req, res) => {
     res.status(404)
-    if(req.accepts('html')) {
+    if (req.accepts('html')) {
         res.sendFile(path.join(__dirname, 'views', '404.html'))
-    }else if (req.accepts('json')) {
-        res.json({message: "404 Not Found"})
-    }else {
+    } else if (req.accepts('json')) {
+        res.json({ message: '404 Not Found' })
+    } else {
         res.type('txt').send('404 Not Found')
     }
 })
